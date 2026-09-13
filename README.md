@@ -1,11 +1,8 @@
-"""
-=============================================================
- DOCUMENTACIÓN DEL SISTEMA BIBLIOTECA - Lab04
-=============================================================
+# Documentación del sistema Biblioteca - Lab04
 
-1. ESTRUCTURA DEL PROYECTO
-==========================
+## 1. Estructura del proyecto
 
+```text
 Lab04/
 ├── config/                         # Configuración de Django
 │   ├── settings.py                 # Configuración principal
@@ -25,11 +22,11 @@ Lab04/
 ├── db.sqlite3                      # Base de datos
 ├── manage.py                       # Script de gestión Django
 └── README.md                       # Esta documentación
+```
 
+## 2. Modelos y relaciones
 
-2. MODELOS Y RELACIONES
-========================
-
+```text
 +------------------+       +-------------------+
 |     Author       |1----*|      Book         |
 |------------------|       |-------------------|
@@ -58,10 +55,9 @@ Lab04/
         *                                                      |
         |                                                      |
         +------------------------------------------------------+
+   ```
 
-
-3. TIPOS DE RELACIONES
-=======================
+   ## 3. Tipos de relaciones
 
 A) ForeignKey (N:1) - Book -> Author
 -------------------------------------
@@ -100,16 +96,14 @@ D) ManyToMany sin Through Model (N:M) - Book <-> Category
      - Category -> Books: category.books.all() (related_name='books')
 
 
-4. COMPORTAMIENTO on_delete=CASCADE
-=====================================
+## 4. Comportamiento `on_delete=CASCADE`
 Cuando se elimina un padre, se eliminan los hijos automáticamente:
    - Eliminar Author -> Se eliminan sus Books y su AuthorProfile
    - Eliminar Book -> Se eliminan sus Publications
    - Eliminar Publisher -> Se eliminan sus Publications
 
 
-5. VISTAS (Views)
-==================
+## 5. Vistas
 
 A) BookListView (Class-Based View - ListView)
 ----------------------------------------------
@@ -128,57 +122,77 @@ B) BookDetailView (Class-Based View - DetailView)
      - title: Título del libro
 
 
-6. URLs
-========
+## 6. URLs
 
 /                    -> BookListView    (lista de libros)
 /book/<int:pk>/      -> BookDetailView  (detalle de un libro)
 admin/               -> Django Admin    (admin interface)
 
 
-7. SUPERUSER
-=============
+## 7. Superusuario
    Usuario: admin
    Contraseña: admin123
    URL: /admin/
 
 
-8. DATOS DE EJEMPLO
-====================
+## 8. Datos de ejemplo
    Autores: J.R.R. Tolkien, Gabriel García Márquez, Julio Cortázar
    Editoriales: Penguin Random House, Editorial Sudamericana, HarperCollins
    Categorías: Fantasy, Magical Realism, Science Fiction, Classic Literature
    Libros: The Hobbit, Cien Años de Soledad, Rayuela
 
 
-9. QUERIES ORM EJEMPLO
-=======================
+## 9. Queries ORM de ejemplo
 
-# ForeignKey - Libro -> Autor
+- **ForeignKey** - Libro -> Autor
+```python
 book = Book.objects.first()
 author = book.author
+```
 
-# ForeignKey - Autor -> Libros
+- **ForeignKey** - Autor -> Libros
+```python
 author = Author.objects.first()
 books = author.books.all()
+```
 
-# OneToOne - Autor -> Perfil
+- **OneToOne** - Autor -> Perfil
+```python
 profile = author.profile
+```
 
-# ManyToMany - Libro -> Categorías
+- **ManyToMany - Libro -> Categorías**
+```python
 categories = book.categories.all()
+```
 
-# ManyToMany con Through - Libro -> Publicaciones
+- **ManyToMany con Through** - Libro -> Publicaciones
+```python
 publications = book.publications.all()
 for pub in publications:
     print(pub.publisher.name, pub.publication_date, pub.edition_number)
+```
 
-# ManyToMany con Through - Editorial -> Libros
+- **ManyToMany con Through** - Editorial -> Libros
+```python
 publisher = Publisher.objects.first()
 books = publisher.books.all()
+```
 
-# Queries avanzadas
+- **Queries avanzadas**
+```python
 Book.objects.filter(publication_year__gt=1950)
 Book.objects.filter(categories__name="Fantasy").distinct()
+```
 
-"""
+
+
+
+
+
+
+
+
+
+
+
