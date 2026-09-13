@@ -185,6 +185,17 @@ Book.objects.filter(publication_year__gt=1950)
 Book.objects.filter(categories__name="Fantasy").distinct()
 ```
 
+### Evidencias:
+
+- **Captura de BookListView**
+
+<img width="1566" height="820" alt="Captura desde 2026-09-13 09-33-40" src="https://github.com/user-attachments/assets/aab2096f-7e24-4a63-a553-4326217f681f" />
+
+- **BookDetailView**
+  <img width="1694" height="960" alt="Captura desde 2026-09-13 10-24-38" src="https://github.com/user-attachments/assets/636aac05-37f3-447e-9cfd-033b003f4e9e" />
+  
+- **Django Admin**:
+  <img width="1154" height="633" alt="Captura desde 2026-09-13 10-25-56" src="https://github.com/user-attachments/assets/725badfb-f25a-4acc-bbbd-1bdca795e197" />
 
 
 
