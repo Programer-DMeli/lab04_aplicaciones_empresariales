@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Biblioteca{% endblock %}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; color: #333; line-height: 1.6; }
+        header { background: linear-gradient(135deg, #1a237e, #283593); color: white; padding: 1.5rem 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        header h1 { font-size: 1.6rem; }
+        main { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+        a { color: #1a237e; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .card { background: white; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+        .card h2 { margin-bottom: 0.5rem; color: #1a237e; }
+        .card h3 { margin: 1rem 0 0.5rem; color: #283593; }
+        .card h4 { color: #303f6e; margin-bottom: 0.3rem; }
+        .section-title { font-size: 1.15rem; font-weight: 600; color: #1a237e; margin: 1.2rem 0 0.5rem; border-bottom: 2px solid #e8eaf6; padding-bottom: 0.3rem; }
+        .badge { display: inline-block; background: #e8eaf6; color: #1a237e; padding: 0.2rem 0.7rem; border-radius: 12px; font-size: 0.85rem; margin: 0.15rem; }
+        .back-link { display: inline-block; margin-bottom: 1rem; color: #5c6bc0; font-weight: 500; }
+        .cover-img { max-width: 200px; max-height: 280px; border-radius: 6px; margin: 0.5rem 0; }
+        table { width: 100%; border-collapse: collapse; margin: 0.5rem 0; }
+        th, td { text-align: left; padding: 0.5rem 0.8rem; border-bottom: 1px solid #e0e0e0; }
+        th { background: #e8eaf6; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{% block header %}Biblioteca - Catálogo de Libros{% endblock %}</h1>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,98 @@
+{% extends "library/base.html" %}
+
+{% block title %}{{ book.title }} - Detalle{% endblock %}
+
+{% block content %}
+<a href="{% url 'library:book-list' %}" class="back-link">&larr; Volver al catálogo</a>
+
+<div class="card">
+    <h2>{{ book.title }}</h2>
+    <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+    <p><strong>Autor:</strong> <a href="#autor">{{ book.author }}</a></p>
+    <p><strong>Año de publicación:</strong> {{ book.publication_year }}</p>
+    <p><strong>Páginas:</strong> {{ book.pages }}</p>
+
+    {% if book.cover_image %}
+        <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" class="cover-img">
+    {% endif %}
+</div>
+
+{# CATEGORÍAS (ManyToMany) #}
+<div class="card">
+    <div class="section-title">Categorías</div>
+    {% if categories %}
+        {% for cat in categories %}
+            <span class="badge">{{ cat.name }}</span>
+        {% empty %}
+            <p>Sin categorías asignadas.</p>
+        {% endfor %}
+    {% else %}
+        <p>Sin categorías asignadas.</p>
+    {% endif %}
+</div>
+
+{# PUBLICACIONES - Modelo Intermedio (ManyToMany through) #}
+<div class="card">
+    <div class="section-title">Publicaciones (Editoriales)</div>
+    {% if publications %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Editorial</th>
+                    <th>Fecha</th>
+                    <th>Edición</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for pub in publications %}
+                <tr>
+                    <td><a href="#pub-{{ pub.publisher.id }}">{{ pub.publisher.name }}</a></td>
+                    <td>{{ pub.publication_date|date:"d/m/Y" }}</td>
+                    <td>{{ pub.edition_number }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Sin publicaciones registradas.</p>
+    {% endif %}
+</div>
+
+{# AUTOR (ForeignKey + OneToOne) #}
+<div class="card" id="autor">
+    <div class="section-title">Información del Autor</div>
+    <h4>{{ book.author.first_name }} {{ book.author.last_name }}</h4>
+    <p><strong>Nacionalidad:</strong> {{ book.author.nationality|default:"No especificada" }}</p>
+    <p><strong>Fecha de nacimiento:</strong> {{ book.author.date_of_birth|date:"d/m/Y"|default:"No especificada" }}</p>
+
+    {% if author_profile %}
+        <h3 style="margin-top:1rem;">Perfil del Autor</h3>
+        {% if author_profile.biography %}
+            <p><strong>Biografía:</strong> {{ author_profile.biography }}</p>
+        {% endif %}
+        {% if author_profile.email %}
+            <p><strong>Email:</strong> {{ author_profile.email }}</p>
+        {% endif %}
+        {% if author_profile.website %}
+            <p><strong>Sitio web:</strong> <a href="{{ author_profile.website }}" target="_blank">{{ author_profile.website }}</a></p>
+        {% endif %}
+        {% if author_profile.photo %}
+            <img src="{{ author_profile.photo.url }}" alt="{{ book.author }}" class="cover-img">
+        {% endif %}
+    {% else %}
+        <p><em>No hay perfil detallado disponible para este autor.</em></p>
+    {% endif %}
+</div>
+
+{# EDITORIALES DETALLE #}
+{% if publishers %}
+<div class="card">
+    <div class="section-title">Detalle de Editoriales</div>
+    {% for pub in publishers %}
+        <h4 id="pub-{{ pub.id }}">{{ pub.name }}</h4>
+        <p><strong>Sitio web:</strong> {{ pub.website|default:"No especificado" }}</p>
+        <p><strong>Dirección:</strong> {{ pub.address|default:"No especificada" }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

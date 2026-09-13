@@ -1,0 +1,23 @@
+{% extends "library/base.html" %}
+
+{% block title %}Catálogo de Libros{% endblock %}
+
+{% block content %}
+<h2>Libros Disponibles</h2>
+{% if books %}
+    <ul>
+    {% for book in books %}
+        <li class="card">
+            <h3><a href="{% url 'library:book-detail' book.pk %}">{{ book.title }}</a></h3>
+            <p><strong>Autor:</strong> {{ book.author }}</p>
+            <p><strong>Año:</strong> {{ book.publication_year }} | <strong>Páginas:</strong> {{ book.pages }}</p>
+            {% if book.categories.exists %}
+                <p><strong>Categorías:</strong> {% for cat in book.categories.all %}<span class="badge">{{ cat.name }}</span>{% endfor %}</p>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p class="card">No hay libros registrados en el catálogo.</p>
+{% endif %}
+{% endblock %}
