@@ -198,8 +198,14 @@ Book.objects.filter(categories__name="Fantasy").distinct()
   <img width="1154" height="633" alt="Captura desde 2026-09-13 10-25-56" src="https://github.com/user-attachments/assets/725badfb-f25a-4acc-bbbd-1bdca795e197" />
 
 
+- **Evidencias de Uso de CASCADE Y PROTECT en el Proyecto**:
+   **Evidencia 1:**
 
+  <img width="1049" height="572" alt="Captura desde 2026-09-26 12-04-18" src="https://github.com/user-attachments/assets/960e0390-7a14-4b01-b581-103d2186826c" />
 
+- **Evidencia 2:**
+
+  <img width="1186" height="620" alt="Captura desde 2026-09-26 12-17-39" src="https://github.com/user-attachments/assets/b2f66681-faac-49c7-b18d-d13ac7cb62bf" />
 
 
 
