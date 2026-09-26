@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Django
+*.log
+*.sqlite3-journal
+staticfiles/
+
+# NOTA: db.sqlite3 NO se ignora a propósito. El proyecto lo versiona para
+# conservar los datos de ejemplo del laboratorio (3 libros, 3 autores,
+# 3 editoriales, 4 categorías, 4 publicaciones y 3 perfiles).
+media/
+
+# Entorno
+.env
+.venv
+env/
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# SO
+.DS_Store
+Thumbs.db

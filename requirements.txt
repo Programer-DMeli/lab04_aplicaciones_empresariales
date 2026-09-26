@@ -1,0 +1,76 @@
+# =============================================================================
+# LABORATORIO 04 - Sistema de Gestión de Biblioteca
+# Proyecto Django - Aplicaciones Empresariales
+# =============================================================================
+#
+# INSTALACIÓN:
+#   python3 -m venv .venv
+#   source .venv/bin/activate        # Linux/macOS
+#   .venv\Scripts\activate           # Windows
+#   pip install -r requirements.txt
+#
+# ARRANQUE:
+#   python manage.py migrate
+#   python manage.py createsuperuser
+#   python manage.py runserver
+#
+# =============================================================================
+# REQUERIMIENTOS FUNCIONALES DEL SISTEMA
+# =============================================================================
+#
+# Módulo de Catálogo
+#   RF-01  Registrar libros con título, ISBN-13, año, páginas y portada.
+#   RF-02  Registrar autores con nombre, apellido, fecha de nacimiento y nacionalidad.
+#   RF-03  Registrar editoriales con nombre, sitio web y dirección.
+#   RF-04  Registrar categorías con nombre único y descripción.
+#   RF-05  Consultar el catálogo completo de libros disponibles.
+#   RF-06  Consultar el detalle de un libro: categorías, editoriales, autor y perfil.
+#
+# Módulo de Relaciones entre modelos
+#   RF-07  Cada libro pertenece a un único autor (relación N:1 / ForeignKey).
+#   RF-08  Cada autor puede tener como máximo un perfil detallado (relación 1:1).
+#   RF-09  Un libro puede pertenecer a una o varias categorías (relación N:M).
+#   RF-10  Un libro puede ser publicado por una o varias editoriales (relación N:M
+#          con modelo intermedio), guardando fecha de publicación y número de
+#          edición de cada una.
+#   RF-11  Al eliminar un autor, sus libros y su perfil se eliminan en cascada.
+#
+# Módulo de Administración
+#   RF-12  Gestionar autores, perfiles, libros, categorías, editoriales y
+#          publicaciones desde el panel de administración de Django.
+#
+# Módulo de Consulta (ORM)
+#   RF-13  Consultar en ambos sentidos de la relación (ida y vuelta).
+#   RF-14  Filtrar registros atravesando relaciones con doble guion bajo (__).
+#
+# No funcional
+#   RNF-01  Interfaz web responsive en español, sin JavaScript externo (CDN-free).
+#   RNF-02  Validación de datos mediante constraints de base de datos (ISBN único,
+#           unique_together en Publication, name único en Category).
+#   RNF-03  Suite de pruebas automatizadas que cubre las relaciones y el
+#           comportamiento de on_delete.
+#
+# =============================================================================
+# DEPENDENCIAS
+# =============================================================================
+#
+# Framework principal
+Django==6.1.1
+
+# Soporte de ImageField (portadas de libros y fotos de autor)
+pillow==12.3.0
+
+# Dependencias transitivas de Django (instaladas automáticamente,
+# se listan para fijar versiones reproducibles)
+asgiref==3.12.1
+sqlparse==0.6.0
+
+# =============================================================================
+# ENTORNO
+# =============================================================================
+#   Python 3.14.7
+#   Base de datos: SQLite 3 (db.sqlite3)
+#
+# NOTA: Pillow es obligatorio porque los modelos AuthorProfile.photo y
+#       Book.cover_image usan ImageField. Sin Pillow, manage.py check falla
+#       con: "Cannot use ImageField because Pillow is not installed".
