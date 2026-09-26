@@ -1,4 +1,4 @@
-# Guía - Actividades 9 y 10 (Laboratorio 04)
+# Explicacion de las Actividades 9 y 10 
 
 Todas las consultas fueron ejecutadas y verificadas en `python3 manage.py shell`.
 Los resultados mostrados son reales.
@@ -10,7 +10,6 @@ Los resultados mostrados son reales.
 ### Cómo entrar a la consola
 
 ```bash
-cd /home/meli_dev/cuarto_ciclo/Aplicaciones_empresariales/Lab04
 python3 manage.py shell
 ```
 

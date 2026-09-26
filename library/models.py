@@ -84,7 +84,7 @@ class Book(models.Model):
     # ForeignKey: Book pertenece a un solo Author
     author = models.ForeignKey(
         Author,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         related_name='books',
         help_text='Author of this book'
     )
